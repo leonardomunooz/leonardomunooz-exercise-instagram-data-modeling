@@ -30,7 +30,7 @@ class User_Follower(Base):
     __tablename__ = 'follower'
     id = Column(Integer, primary_key = True)
     follower_id = (Integer, ForeignKey('user.id'))
-    
+    user = relationship('User')
     
 
 
