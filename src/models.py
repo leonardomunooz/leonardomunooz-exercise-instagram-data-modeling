@@ -1,7 +1,7 @@
 import os
 import sys
 import enum
-from sqlalchemy import Column, ForeignKey, Integer, String, Enum,Text
+from sqlalchemy import Column, ForeignKey, Integer, String, Enum
 from sqlalchemy.orm import relationship, declarative_base
 from sqlalchemy import create_engine
 from eralchemy2 import render_er
@@ -30,10 +30,9 @@ class User_Follower(Base):
     __tablename__ = 'user_follower'
     id = Column(Integer, primary_key = True)
     follower_id = (Integer, ForeignKey('user.id'))
+    following_id = (Integer, ForeignKey('user.id'))
     user = relationship('User')
     
-
-
 class Post(Base):
     __tablename__ = 'post'
     id= Column(Integer, primary_key=True)
@@ -55,6 +54,7 @@ class Media(Base):
     id = Column(Integer, primary_key = True)
     type = Enum(MediaEnum)
     url =  Column(String(250), nullable=False)
+
     post_id = Column(Integer, ForeignKey('post.id'))
     post = relationship("Post")
 
